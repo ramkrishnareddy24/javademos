@@ -1,5 +1,6 @@
 package CollectionsDemo;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,9 +13,13 @@ public class SetDemoHashsetTreeset {
 		s.add("Willian");
 		s.add("Zoe");
 		s.add("Robert");
-		
-		
 		System.out.println(s);
+		
+		Set<Employee> s1 = new TreeSet<Employee>(new EmployeeCompartor());
+		s1.add(new Employee(101,"Ram",10000,"AA101"));
+		s1.add(new Employee(102,"Shyam",20000,"AA102"));
+		s1.add(new Employee(103,"Murali",3000,"AA103"));
+		System.out.println(s1);
 	}
 }
 
@@ -31,6 +36,36 @@ class StringComparator implements Comparator<String> {
 		}
 		else {
 			return s1.compareTo(s2);
+		}
 	}
+	
+
+}
+
+class EmployeeCompartor implements Comparator<Employee>
+{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		return o1.name.compareTo(o2.name);
+	}
+	
+}
+
+class Employee {
+	int id;
+	String name;
+	double salary;
+	String aadharno;
+	
+	Employee(int id,String name,double salary,String aadharno){
+		this.id=id;
+		this.name=name;
+		this.salary=salary;
+		this.aadharno=aadharno;
+	}
+	
+	public String toString() {
+		return this.id + "|" + this.name +"|"+ this.salary +"|"+ this.aadharno;
 	}
 }
